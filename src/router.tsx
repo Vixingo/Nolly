@@ -10,6 +10,10 @@ import { ProductDetailPage } from './pages/storefront/ProductDetailPage'
 import { CartPage } from './pages/storefront/CartPage'
 import { CheckoutPage } from './pages/storefront/CheckoutPage'
 import { ThankYouPage } from './pages/storefront/ThankYouPage'
+import { TermsPage } from './pages/storefront/TermsPage'
+import { PrivacyPage } from './pages/storefront/PrivacyPage'
+import { ReturnsPage } from './pages/storefront/ReturnsPage'
+import { ShippingPage } from './pages/storefront/ShippingPage'
 
 // Admin Pages
 import { AdminLoginPage } from './pages/admin/AdminLoginPage'
@@ -18,6 +22,7 @@ import { AdminProductsPage } from './pages/admin/AdminProductsPage'
 import { AdminOrdersPage } from './pages/admin/AdminOrdersPage'
 import { AdminAnalyticsPage } from './pages/admin/AdminAnalyticsPage'
 import { AdminPixelsPage } from './pages/admin/AdminPixelsPage'
+import { AdminStoreSettingsPage } from './pages/admin/AdminStoreSettingsPage'
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +52,22 @@ export const router = createBrowserRouter([
       {
         path: 'thank-you',
         element: <ThankYouPage />
+      },
+      {
+        path: 'terms',
+        element: <TermsPage />
+      },
+      {
+        path: 'privacy',
+        element: <PrivacyPage />
+      },
+      {
+        path: 'returns',
+        element: <ReturnsPage />
+      },
+      {
+        path: 'shipping',
+        element: <ShippingPage />
       }
     ]
   },
@@ -85,6 +106,10 @@ export const router = createBrowserRouter([
       {
         path: 'pixels',
         element: <AdminPixelsPage />
+      },
+      {
+        path: 'store-settings',
+        element: <AdminStoreSettingsPage />
       }
     ]
   }

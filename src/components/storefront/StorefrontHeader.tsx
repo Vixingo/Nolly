@@ -2,19 +2,30 @@ import { Link } from 'react-router-dom'
 import { ShoppingCart, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import { useCartStore } from '../../store/useCartStore'
+import { useStoreSettings } from '../../store/useStoreSettings'
 import { Button } from '../ui/button'
 
 export function StorefrontHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const totalItems = useCartStore((state) => state.getTotalItems())
+  const { settings } = useStoreSettings()
 
   return (
     <header className="bg-white shadow-sm border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <h1 className="text-2xl font-bold text-gray-900">Nolly</h1>
+          <Link to="/" className="flex items-center gap-2">
+            {settings?.store_logo_url && (
+              <img 
+                src={settings.store_logo_url} 
+                alt={settings?.store_name || 'Store logo'}
+                className="h-8 w-auto"
+              />
+            )}
+            <h1 className="text-2xl font-bold text-gray-900">
+              {settings?.store_name || 'Nolly'}
+            </h1>
           </Link>
 
           {/* Desktop Navigation */}

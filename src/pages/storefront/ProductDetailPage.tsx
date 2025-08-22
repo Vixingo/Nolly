@@ -5,6 +5,7 @@ import { supabase } from '../../lib/supabase/client'
 import type { Product } from '../../types'
 import { useCartStore } from '../../store/useCartStore'
 import { Button } from '../../components/ui/button'
+import { useNavigate } from 'react-router-dom'
 
 export function ProductDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -12,6 +13,8 @@ export function ProductDetailPage() {
   const [loading, setLoading] = useState(true)
   const [quantity, setQuantity] = useState(1)
   const addItem = useCartStore((state) => state.addItem)
+  const clearCart = useCartStore((state) => state.clearCart)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (id) {
@@ -54,6 +57,14 @@ export function ProductDetailPage() {
   const decrementQuantity = () => {
     if (quantity > 1) {
       setQuantity(prev => prev - 1)
+    }
+  }
+
+  const handleBuyNow = () => {
+    if (product) {
+      clearCart() // Clear existing cart items
+      addItem(product, quantity) // Add only this item
+      navigate('/checkout') // Navigate to checkout
     }
   }
 
@@ -160,15 +171,26 @@ export function ProductDetailPage() {
                 </div>
               </div>
 
-              {/* Add to Cart Button */}
-              <Button
-                size="lg"
-                className="w-full"
-                onClick={handleAddToCart}
-              >
-                <ShoppingCart className="mr-2 h-5 w-5" />
-                Add to Cart
-              </Button>
+              {/* Add to Cart and Buy Now Buttons */}
+              <div className="space-y-3">
+                <Button
+                  size="lg"
+                  className="w-full"
+                  onClick={handleAddToCart}
+                >
+                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  Add to Cart
+                </Button>
+
+                <Button
+                  size="lg"
+                  className="w-full"
+                  variant="secondary"
+                  onClick={handleBuyNow}
+                >
+                  Buy Now
+                </Button>
+              </div>
             </div>
           )}
         </div>

@@ -5,6 +5,7 @@ import {
   ShoppingCart, 
   BarChart3, 
   Settings,
+  Store,
   LogOut
 } from 'lucide-react'
 import { useAuthStore } from '../../store/useAuthStore'
@@ -16,6 +17,7 @@ const navigation = [
   { name: 'Orders', href: '/admin/orders', icon: ShoppingCart },
   { name: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
   { name: 'Pixels', href: '/admin/pixels', icon: Settings },
+  { name: 'Store Settings', href: '/admin/store-settings', icon: Store },
 ]
 
 export function AdminSidebar() {
